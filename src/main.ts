@@ -7,7 +7,7 @@ import Nav from '@/components/Nav.vue';
 
 Vue.config.productionTip = false
 
-Vue.component('Nav',Nav)
+Vue.component('Nav',Nav)  //把Nav组件变成全局组件
 new Vue({
   router,  //把router传给Vue
   store,

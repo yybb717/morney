@@ -10,6 +10,6 @@
   };
 </script>
 
-<style lang="SCSS" scoped>
+<style lang="scss" scoped>
 
 </style>
