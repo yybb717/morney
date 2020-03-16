@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Money from '@/views/Money.vue';
 import Labels from '@/views/Labels.vue';
 import Statistics from '@/views/Statistics.vue';
+import NotFound from '@/views/NotFound.vue';
 
 Vue.use(VueRouter)
 
@@ -23,6 +24,10 @@ const routes = [
   {
     path:'/statistics',
     component: Statistics
+  },
+  {
+    path:'*',                //输入路径之后，每次都是从最上面的路径依次向下找有没有和输入的路径一样的。如果上面的都不是，那输入的路径就属于*（除去上面后的所有的路径）
+    component: NotFound
   }
   // {
   //   path: '/',
