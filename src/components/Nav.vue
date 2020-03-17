@@ -38,14 +38,14 @@
     align-items: center;
     padding: 2px 0;
     font-size: 22px;
-    background: lightpink;
+    color: hotpink;
 > .icon{
   width: 32px;
   height: 32px;
 }
   }
     > .item.selected{
-      background:hotpink;
+      color: mediumvioletred;
     }
   }
 </style>
