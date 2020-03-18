@@ -1,36 +1,6 @@
 <template>
   <div>
-    <Layout>
-
-      <div class="tags">
-        <ul class="current">
-          <li>衣</li>
-          <li>食</li>
-          <li>住</li>
-          <li>行</li>
-        </ul>
-        <div class="new">
-          <button>新增标签</button>
-        </div>
-
-      </div>
-
-      <div>
-        <label class="notes">
-          <span class="name">备注</span>
-          <input type="text" placeholder="在这里输入备注"/>
-        </label>
-      </div>
-
-      <div>
-        <ul class="types">
-          <li class="selected">
-            支出
-          </li>
-          <li>收入</li>
-        </ul>
-      </div>
-
+    <Layout class-prefix="xxx">
       <div class="numberPad">
         <div class="output">100</div>
         <div class="buttons clearfix">
@@ -50,12 +20,32 @@
           <button>.</button>
         </div>
       </div>
+      <div>
+        <ul class="types">
+          <li class="selected">
+            支出
+          </li>
+          <li>收入</li>
+        </ul>
+      </div>
+      <div>
+        <label class="notes">
+          <span class="name">备注</span>
+          <input type="text" placeholder="在这里输入备注"/>
+        </label>
+      </div>
+      <div class="tags">
+        <div class="new">
+          <button>新增标签</button>
+        </div>
+        <ul class="current">
+          <li>衣</li>
+          <li>食</li>
+          <li>住</li>
+          <li>行</li>
+        </ul>
 
-      <div class="color" id="a"></div>
-      <div class="color" id="b"></div>
-      <div class="color" id="c"></div>
-      <div class="color" id="d"></div>
-      <div class="color" id="e"></div>
+      </div>
     </Layout>
   </div>
 </template>
@@ -66,17 +56,28 @@
   };
 </script>
 
+<style lang="scss">
+  .xxx-content{
+    display: flex;
+    /*从下往上排列 那顺序就反了，需要在html里也反过来 负负得正了*/
+    flex-direction: column-reverse;
+  }
+</style>
+
 <style lang="scss" scoped>
   @import "~@/assets/style/helper.scss";
 
   .tags {
     font-size: 14px;
     padding: 16px;
-
+    /*让最上面的tags占完剩余的地方*/
+    flex-grow: 1;
+    display: flex;
+    /*从下往上排列 那顺序就反了，需要在html里也反过来 负负得正了*/
+    flex-direction: column-reverse;
     > .current {
       display: flex;
       flex-wrap: wrap;
-
       > li {
         background: $color-four;
         /*只有一行，上下居中的话可以让高度和行高相等*/
@@ -160,9 +161,8 @@
       font-family: Consolas, monospace;
       padding: 8px 16px;
       text-align: right;
-      //加个阴影，但是要下阴影！自己调整！阴影似有似无才是最好！
-      box-shadow: inset 0 -5px 5px -5px fade_out($color-highlight,0),inset 0 5px 5px -5px fade_out($color-highlight,0)
-    ;
+      //加个阴影，但是只要上下阴影！自己调整！阴影似有似无才是最好！
+      @extend %innerShadow
     }
 
     .buttons {

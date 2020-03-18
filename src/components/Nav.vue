@@ -28,8 +28,7 @@
   @import "~@/assets/style/helper.scss";
   nav {
     display: flex;
-    /*用阴影的诀窍就是不能让别人看出你用了阴影*/
-    box-shadow: 0 0 3px rgba(255,41,41,0.25);
+   @extend %outerShadow;
     flex-direction: row;
   >.item{
     width: 33.33333%;

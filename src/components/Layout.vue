@@ -1,6 +1,6 @@
 <template>
-  <div class="nav-wrapper">
-    <div class="content">
+  <div class="layout-wrapper" >
+    <div class="content" :class="classPrefix && `${classPrefix}-content`" >
 <!--  只有content里的内容不一样。所以用插槽先占位。以后谁用了本组件就在本组件里面写上属于你自己的内容就行了    -->
       <slot />
     </div>
@@ -10,12 +10,13 @@
 
 <script lang="ts">
   export default {
+    props:['classPrefix'],
     name: 'Layout'
   };
 </script>
 
 <style lang="scss" scoped>
-  .nav-wrapper {
+  .layout-wrapper {
     display: flex;
     flex-direction: column;
     /*让整个记账页面的高度固定为全部屏幕。需要固定高度100vh*/
