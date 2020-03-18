@@ -16,7 +16,6 @@
 
 <style lang="scss" scoped>
   .nav-wrapper {
-    border: 1px solid black;
     display: flex;
     flex-direction: column;
     /*让整个记账页面的高度固定为全部屏幕。需要固定高度100vh*/

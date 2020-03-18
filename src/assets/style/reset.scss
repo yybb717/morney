@@ -1,0 +1,22 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/*把a标签的下划线去掉，颜色是继承他的父元素的颜色*/
+a{
+  text-decoration: none;
+  color:inherit;
+}
+ul, ol{
+  list-style: none;
+}
+//button和input都不会继承父元素的字体，也就是body的字体，我们让他们继承
+button, input{
+  font: inherit;
+}
+
+//鼠标点到输入框会有个边框,那就让任何focus的元素的outline为none
+:focus{
+  outline: none;
+}

@@ -1,23 +1,22 @@
 <template>
   <div>
     <router-view />
-
   </div>
 
 </template>
 
 <style lang="scss">
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@import "~@/assets/style/reset.scss";
+@import "~@/assets/style/helper.scss";
   body{
     line-height: 1.5;
+    font-family: $font-hei;
+    font-size:16px;
+    /*尤雨溪写好的ios系统更美观*/
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /*这个是个不是纯黑色的颜色，看起来比纯黑色柔和一点*/
+    color: #333;
   }
-  /*把a标签的下划线去掉，颜色是继承他的父元素的颜色*/
-  a{
-    text-decoration: none;
-    color:inherit;
-  }
+
 </style>
