@@ -23,6 +23,7 @@
     notes: string;
     type: string;
     amount: number;
+    createdAt?: Date ;
   }
 
   @Component({components: {Notes, Tags, NumberPad, Types}})
@@ -32,7 +33,7 @@
     record: Record = {
       tags: [], notes: '', type: '-', amount: 0
     };
-    recordList: Record[] = [];
+    recordList: Record[] = JSON.parse(window.localStorage.getItem('recordList' ) || '[]');
 
     onUpdateTags(value: string[]) {
       this.record.tags = value;
@@ -52,6 +53,7 @@
 
     saveRecord() {
       const record2: Record = JSON.parse(JSON.stringify(this.record));
+      record2.createdAt = new Date();
       this.recordList.push(record2);
     }
 
