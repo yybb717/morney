@@ -12,10 +12,14 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import {Component} from 'vue-property-decorator';
+  import {Component,Watch} from 'vue-property-decorator';
   @Component
   export default class Notes extends Vue {
     value = '';  //还是得声明一个value，用户不写当做写了个空字符串
+  @Watch('value')
+    onValueChanged(newValue: string,oldValue: string){
+     this.$emit('update:notes',newValue)
+  }
   }
 </script>
 

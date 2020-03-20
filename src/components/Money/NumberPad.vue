@@ -52,7 +52,7 @@
       this.output = '0';
     }
     ok(){
-      console.log('hi')
+      this.$emit('update:number',this.output)
     }
   }
 </script>

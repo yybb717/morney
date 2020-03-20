@@ -33,6 +33,7 @@
       } else {  //如果不在，你点击这个标签说明你就是想把它选中，放到selectedTags被选中的标签们的数组里去
         this.selectedTags.push(tag);
       }
+      this.$emit("update:tags",this.selectedTags)
     }
 
     create() {
