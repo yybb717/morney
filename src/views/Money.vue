@@ -5,7 +5,6 @@
       <Types :type="record.type" @update:type="onUpdateType"/>
       <Notes @update:notes="onUpdateNotes"/>
       <Tags :data-source.sync="tags" @update:tags="onUpdateTags"/>
-      {{record}}
     </Layout>
   </div>
 </template>

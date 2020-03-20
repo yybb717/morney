@@ -17,6 +17,7 @@
     -moz-osx-font-smoothing: grayscale;
     /*这个是个不是纯黑色的颜色，看起来比纯黑色柔和一点*/
     color: #333;
+    background: $color-six;
   }
 
 </style>

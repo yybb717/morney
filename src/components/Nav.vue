@@ -27,6 +27,7 @@
 <style lang="scss" scoped>
   @import "~@/assets/style/helper.scss";
   nav {
+    background: white;
     display: flex;
    @extend %outerShadow;
     flex-direction: row;
@@ -37,11 +38,11 @@
     justify-content: center;
     align-items: center;
     padding: 2px 0;
-    font-size: 22px;
+    font-size: 18px;
     color:$color-three;
 > .icon{
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
 }
   }
     > .item.selected{
