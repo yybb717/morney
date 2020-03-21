@@ -1,13 +1,14 @@
 <template>
   <div>
     <Layout>
-      <ol class="tags">
+      <div class="tags">
 <!--        把标签渲染到页面-->
-        <li v-for="tag in tags" :key="tag.id">
+        <router-link class="tag" v-for="tag in tags" :key="tag.id"
+                     :to="`/labels/edit/${tag.id}`">
           <span>{{tag.name}}</span>
           <Icon iconId="right"/>
-        </li>
-      </ol>
+        </router-link>
+      </div>
       <div class="creatTag">
         <button @click="createTag">新建标签</button>
       </div>
@@ -49,7 +50,7 @@
     padding: 0 8px;
     background: white;
 
-    > li {
+    > .tag {
       border-bottom: 1px solid #e6e6e6;
       min-height: 44px;
       display: flex;
