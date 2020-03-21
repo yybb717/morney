@@ -5,35 +5,31 @@
       <Types :type="record.type" @update:type="onUpdateType"/>
       <Notes @update:notes="onUpdateNotes"/>
       <Tags :data-source.sync="tags" @update:tags="onUpdateTags"/>
+      {{recordList}}
     </Layout>
   </div>
 </template>
 
 <script lang="ts">
-  import Vue from 'vue';
-  import {Component, Watch} from 'vue-property-decorator';
+    import Vue from 'vue';
+    import {Component, Watch} from 'vue-property-decorator';
   import NumberPad from '@/components/Money/NumberPad.vue';
   import Types from '@/components/Money/Types.vue';
   import Tags from '@/components/Money/Tags.vue';
   import Notes from '@/components/Money/Notes.vue';
-
-  type Record = {
-    tags: string[];
-    notes: string;
-    type: string;
-    amount: number;
-    createdAt?: Date ;
-  }
-
+  import {recordListModel} from '@/models/recordListModel';
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  import {tagListModel} from '@/models/tagListModel';
+    const recordList = recordListModel.fetch();
+    const tagList = tagListModel.fetch();
   @Component({components: {Notes, Tags, NumberPad, Types}})
 
   export default class Money extends Vue {
-    tags = ['衣', '食', '住', '行'];
-    record: Record = {
+    recordList: RecordItem[] = recordList;
+    tags = tagList;
+    record: RecordItem = {
       tags: [], notes: '', type: '-', amount: 0
     };
-    recordList: Record[] = JSON.parse(window.localStorage.getItem('recordList' ) || '[]');
-
     onUpdateTags(value: string[]) {
       this.record.tags = value;
     }
@@ -51,14 +47,14 @@
     }
 
     saveRecord() {
-      const record2: Record = JSON.parse(JSON.stringify(this.record));
+      const record2: RecordItem = recordListModel.clone(this.record);
       record2.createdAt = new Date();
       this.recordList.push(record2);
     }
 
     @Watch('recordList')
     onRecordListChange() {
-      window.localStorage.setItem('recordList', JSON.stringify(this.recordList));
+      recordListModel.save(this.recordList);
     }
   }
 </script>
