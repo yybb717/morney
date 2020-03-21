@@ -3,7 +3,7 @@
     <Layout class-prefix="xxx">
       <NumberPad @update:number="onUpdateAmount" @submit="saveRecord"/>
       <Types :type="record.type" @update:type="onUpdateType"/>
-      <Notes fieldName="备注" placeholder="请在这里输入备注" @update:notes="onUpdateNotes"/>
+      <FormItem fieldName="备注" placeholder="请在这里输入备注" @update:notes="onUpdateNotes"/>
       <Tags :data-source.sync="tags" @update:tags="onUpdateTags"/>
     </Layout>
   </div>
@@ -15,13 +15,13 @@
   import NumberPad from '@/components/Money/NumberPad.vue';
   import Types from '@/components/Money/Types.vue';
   import Tags from '@/components/Money/Tags.vue';
-  import Notes from '@/components/Money/Notes.vue';
+  import FormItem from '@/components/Money/FormItem.vue';
   import {recordListModel} from '@/models/recordListModel';
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   import {tagListModel} from '@/models/tagListModel';
     const recordList = recordListModel.fetch();
     const tagList = tagListModel.fetch();
-  @Component({components: {Notes, Tags, NumberPad, Types}})
+  @Component({components: {FormItem, Tags, NumberPad, Types}})
 
   export default class Money extends Vue {
     recordList: RecordItem[] = recordList;

@@ -14,7 +14,7 @@
   import Vue from 'vue';
   import {Component,Watch,Prop} from 'vue-property-decorator';
   @Component
-  export default class Notes extends Vue {
+  export default class FormItem extends Vue {
     value = '';  //还是得声明一个value，用户不写当做写了个空字符串
     @Prop({required: true}) fieldName!: string;
     @Prop() placeholder?: string;

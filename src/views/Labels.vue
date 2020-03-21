@@ -9,8 +9,8 @@
           <Icon iconId="right"/>
         </router-link>
       </div>
-      <div class="creatTag">
-        <button @click="createTag">新建标签</button>
+      <div >
+        <Button @click="createTag">新建标签</Button>
       </div>
     </Layout>
   </div>
@@ -20,9 +20,12 @@
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
   import {tagListModel} from '@/models/tagListModel';
+  import Button from '@/components/Button.vue';
   //首先需要从数据库获取最新的标签列表data
   tagListModel.fetch();
-  @Component
+  @Component({
+    components: {Button}
+  })
   export default class Labels extends Vue {
     //其次本组件用tags表示标签列表，内容就是tagListModel里的data
     tags = tagListModel.data;
@@ -67,16 +70,13 @@
   }
 
   .creatTag {
-    text-align: center;
-    margin-top: 44px;
-
-    > button {
       background: $color-four;
       padding: 10px 18px;
       border-radius: 5px;
       border: none;
       color: #4d424c;
-    }
+    margin-top: 44px;
+    margin-left: 37%;
   }
 
 </style>
