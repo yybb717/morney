@@ -1,10 +1,10 @@
-
 <template>
   <div>
     <label class="notes">
       <span class="name">{{this.fieldName}}</span>
       <input type="text"
-             v-model="value"
+             :value="value"
+             @input="onValueChanged($event.target.value)"
              :placeholder="this.placeholder">
     </label>
   </div>
@@ -15,11 +15,12 @@
   import {Component,Watch,Prop} from 'vue-property-decorator';
   @Component
   export default class FormItem extends Vue {
-    value = '';  //还是得声明一个value，用户不写当做写了个空字符串
+    @Prop({default: ''}) readonly value!: string;
+
     @Prop({required: true}) fieldName!: string;
     @Prop() placeholder?: string;
   @Watch('value')
-    onValueChanged(newValue: string,oldValue: string){
+  onValueChanged(newValue: string){
      this.$emit('update:notes',newValue)
   }
   }

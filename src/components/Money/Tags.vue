@@ -6,9 +6,9 @@
     <ul class="current">
       <!-- 遍历所有标签的集合----字符串数组dataSource中的每一个元素（标签），把标签放到li里面，这样就成功渲染标签们到页面中了-->
       <!--在遍历所有标签时，如果发现这个标签在selectedTags里面，说明这个标签是被我们点击选中的标签，那么就得给这个标签加上一个class：selected，这样才会有高亮的样式-->
-      <li v-for="tag in dataSource" :key="tag"
+      <li v-for="tag in dataSource" :key="tag.id"
           :class="{selected: selectedTags.indexOf(tag)>=0}"
-          @click="toggle(tag)">{{tag}}
+          @click="toggle(tag)">{{tag.name}}
         <!--在遍历所有标签时，每个标签都会加上一个事件监听函数toggle，参数就是这个标签       -->
       </li>
     </ul>
