@@ -20,12 +20,11 @@
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   import {tagListModel} from '@/models/tagListModel';
     const recordList = recordListModel.fetch();
-    const tagList = tagListModel.fetch();
   @Component({components: {FormItem, Tags, NumberPad, Types}})
 
   export default class Money extends Vue {
     recordList: RecordItem[] = recordList;
-    tags = tagList;
+    tags = window.tagList;
     record: RecordItem = {
       tags: [], notes: '', type: '-', amount: 0
     };
