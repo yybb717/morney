@@ -1,7 +1,7 @@
 <template>
   <div class="tags">
     <div class="new">
-      <button @click="create">新增标签</button>
+      <button @click="createTag">新增标签</button>
     </div>
     <ul class="current">
       <!-- 遍历所有标签的集合----字符串数组dataSource中的每一个元素（标签），把标签放到li里面，这样就成功渲染标签们到页面中了-->
@@ -17,14 +17,21 @@
 </template>
 
 <script lang="ts">
-  import Vue from 'vue';
-  import {Component, Prop} from 'vue-property-decorator';
-  import store from '@/store/index2';
+
+  import {Component} from 'vue-property-decorator';
+  import {mixins} from 'vue-class-component';
+  import TagHelper from '@/mixins/TagHelper';
 
   @Component
-  export default class Tags extends Vue {
-    tagList=store.fetchTags();
+  export default class Tags extends mixins(TagHelper) {
     selectedTags: string[] = [];  //内部数据selectedTags也是个字符串数组，以后会是被我们点击了的标签们的数组
+
+    get tagList() {
+      return this.$store.state.tagList;
+    }
+    created() {
+      this.$store.commit('fetchTags');
+    }
     toggle(tag: string) {
       //参数是标签tag
       //首先得看你这个标签是不是已经在selectedTags被选中的标签们的数组里
@@ -37,13 +44,6 @@
       this.$emit("update:tags",this.selectedTags)
     }
 
-    create() {
-      const name = window.prompt('请输入标签名');
-      if (!name) {
-        return window.alert('标签名不能为空');
-      }
-      store.createTag(name)
-    }
   }
 </script>
 <style lang="scss" scoped>
