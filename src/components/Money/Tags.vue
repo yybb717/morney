@@ -6,10 +6,10 @@
     <ul class="current">
       <!-- 遍历所有标签的集合----字符串数组dataSource中的每一个元素（标签），把标签放到li里面，这样就成功渲染标签们到页面中了-->
       <!--在遍历所有标签时，如果发现这个标签在selectedTags里面，说明这个标签是被我们点击选中的标签，那么就得给这个标签加上一个class：selected，这样才会有高亮的样式-->
-      <li v-for="tag in dataSource" :key="tag.id"
+      <li v-for="tag in tagList" :key="tag.id"
           :class="{selected: selectedTags.indexOf(tag)>=0}"
           @click="toggle(tag)">{{tag.name}}
-        <!--在遍历所有标签时，每个标签都会加上一个事件监听函数toggle，参数就是这个标签       -->
+        <!--在遍历所有标签时，每个标签都会加上一个事件监听函数toggle，参数就是这个标签 -->
       </li>
     </ul>
   </div>
@@ -19,10 +19,11 @@
 <script lang="ts">
   import Vue from 'vue';
   import {Component, Prop} from 'vue-property-decorator';
+  import store from '@/store/index2';
 
   @Component
   export default class Tags extends Vue {
-    @Prop() readonly dataSource: string[] | undefined;  //外部数据dataSource是个字符串数组，以后会是所有标签们的数组
+    tagList=store.fetchTags();
     selectedTags: string[] = [];  //内部数据selectedTags也是个字符串数组，以后会是被我们点击了的标签们的数组
     toggle(tag: string) {
       //参数是标签tag
@@ -38,12 +39,10 @@
 
     create() {
       const name = window.prompt('请输入标签名');
-      if (name === '') {
-        window.alert('标签名不能为空');
-      } else if (this.dataSource) {
-        this.$emit('update:dataSource',
-          [...this.dataSource, name]);
+      if (!name) {
+        return window.alert('标签名不能为空');
       }
+      store.createTag(name)
     }
   }
 </script>
