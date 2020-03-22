@@ -19,12 +19,11 @@
   import store from '@/store/index2';
   // eslint-disable-next-line @typescript-eslint/no-var-requires
 
-    const recordList = store.recordList;
+
   @Component({components: {FormItem, Tags, NumberPad, Types}})
 
   export default class Money extends Vue {
-    recordList: RecordItem[] = recordList;
-    tags = store.tagList;
+    recordList = store.recordList;
     record: RecordItem = {
       tags: [], notes: '', type: '-', amount: 0
     };
