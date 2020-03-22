@@ -2,14 +2,14 @@
   <div>
     <Layout>
       <div class="tags">
-<!--        把标签渲染到页面-->
+        <!--        把标签渲染到页面-->
         <router-link class="tag" v-for="tag in tags" :key="tag.id"
                      :to="`/labels/edit/${tag.id}`">
           <span>{{tag.name}}</span>
           <Icon iconId="right"/>
         </router-link>
       </div>
-      <div >
+      <div>
         <Button @click="createTag">新建标签</Button>
       </div>
     </Layout>
@@ -34,12 +34,7 @@
     createTag() {
       const name = window.prompt('请输出标签名');
       if (name) {
-        const message = tagListModel.create(name);
-        if (message === 'duplicated') {
-          window.alert('标签名重复了');
-        } else if (message === 'success') {
-          window.alert('添加成功');
-        }
+        window.createTag(name);
       }
     }
   }
@@ -70,11 +65,11 @@
   }
 
   .creatTag {
-      background: $color-four;
-      padding: 10px 18px;
-      border-radius: 5px;
-      border: none;
-      color: #4d424c;
+    background: $color-four;
+    padding: 10px 18px;
+    border-radius: 5px;
+    border: none;
+    color: #4d424c;
     margin-top: 44px;
     margin-left: 37%;
   }

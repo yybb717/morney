@@ -16,7 +16,6 @@
 <script lang="ts">
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
-  import {tagListModel} from '@/models/tagListModel';
   import FormItem from '@/components/Money/FormItem.vue';
   import Button from '@/components/Button.vue';
 
@@ -27,10 +26,7 @@
     tag?: { id: string; name: string } = undefined;
 
     created() {
-      const id = this.$route.params.id;
-      tagListModel.fetch();
-      const tags = tagListModel.data;
-      const tag = tags.filter(t => t.id === id)[0];
+      const tag = window.findTag(this.$route.params.id);
       if (tag) {
         this.tag = tag;
       } else {
@@ -40,13 +36,13 @@
 
     updateTag(value: string) {
       if (this.tag) {
-        tagListModel.update(this.tag.id, value);
+        window.updateTag(this.tag.id,value)
       }
     }
 
     removeTag(){
       if (this.tag) {
-        if(tagListModel.remove(this.tag.id)){
+        if(window.removeTag(this.tag.id)){
           this.$router.back()
         } else {
           window.alert('删除失败')
