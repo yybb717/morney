@@ -19,7 +19,7 @@
 <script lang="ts">
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
-  import {tagListModel} from '@/models/tagListModel';
+  import store from '@/store/index2';
   import Button from '@/components/Button.vue';
   //首先需要从数据库获取最新的标签列表data
   // tagListModel.fetch();
@@ -28,13 +28,13 @@
   })
   export default class Labels extends Vue {
     //其次本组件用tags表示标签列表，内容就是tagListModel里的data
-    tags = window.tagList;
+    tags = store.tagList;
     //当点击新建标签按钮，事件处理函数createTag会让用户输入标签名，然后执行create函数，返回值命名为message
     //如果message是duplicated，那肯定就是重复了，那就提醒用户重复了；如果message是success，那就加入成功，提醒用户成功了
     createTag() {
       const name = window.prompt('请输出标签名');
       if (name) {
-        window.createTag(name);
+        store.createTag(name);
       }
     }
   }
