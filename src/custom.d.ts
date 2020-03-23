@@ -18,7 +18,11 @@ type TagListModel = {
 
   remove: (id: string) => boolean;
 }
-
+type RootState = {
+  recordList: RecordItem[];
+  tagList: Tag[];
+  currentTag?: Tag;
+}
 interface Window {
   store: {
     tagList: Tag[];  //声明window有个属性tagList

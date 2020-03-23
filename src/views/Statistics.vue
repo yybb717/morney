@@ -90,7 +90,7 @@
 <style scoped lang="scss">
   @import "~@/assets/style/helper.scss";
   ::v-deep .type-tabs-item {
-    background: white;
+    background: $color-five;
     &.selected {
       background: $color-three;
       &::after {
@@ -98,8 +98,7 @@
       }
     }
   }
-  ::v-deep .interval-tabs-item {
-    height: 48px}
+
   %item {
     padding: 8px 16px;
     line-height: 24px;
@@ -109,6 +108,7 @@
   }
   .title {
     @extend %item;
+    background: $color-four;
   }
   .record {
     background: white;
