@@ -24,7 +24,7 @@
 
   @Component
   export default class Tags extends mixins(TagHelper) {
-    selectedTags: string[] = [];  //内部数据selectedTags也是个字符串数组，以后会是被我们点击了的标签们的数组
+    selectedTags: Tag[] = [];  //内部数据selectedTags也是个字符串数组，以后会是被我们点击了的标签们的数组
 
     get tagList() {
       return this.$store.state.tagList;
@@ -32,7 +32,7 @@
     created() {
       this.$store.commit('fetchTags');
     }
-    toggle(tag: string) {
+    toggle(tag: Tag) {
       //参数是标签tag
       //首先得看你这个标签是不是已经在selectedTags被选中的标签们的数组里
       const index = this.selectedTags.indexOf(tag);

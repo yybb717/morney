@@ -40,7 +40,12 @@
     saveRecord() {
       this.$store.commit('createRecord', this.record);
     }
-
+      onUpdateTags(value: Tag[]){
+      this.record.tags=value
+      }
+      onUpdateAmount(value: number){
+        this.record.amount=value
+      }
   }
 </script>
 
