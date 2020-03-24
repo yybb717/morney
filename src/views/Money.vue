@@ -4,7 +4,7 @@
       <NumberPad @update:number="onUpdateAmount" @submit="saveRecord"/>
       <Tabs :data-source="recordTypeList"
             :value.sync="record.type"/>
-      <FormItem fieldName="备注" placeholder="请在这里输入备注" @update:notes="onUpdateNotes"/>
+      <FormItem fieldName="备注" placeholder="请在这里输入备注" :value="record.notes" @update:notes="onUpdateNotes"/>
       <Tags  @update:tags="onUpdateTags"/>
     </Layout>
   </div>
@@ -38,7 +38,12 @@
       this.record.notes = value;
     }
     saveRecord() {
+      if(!this.record.tags||this.record.tags.length===0){
+        window.alert('请至少选择一个标签')
+        return
+      }
       this.$store.commit('createRecord', this.record);
+      this.record.notes=''
     }
       onUpdateTags(value: Tag[]){
       this.record.tags=value
